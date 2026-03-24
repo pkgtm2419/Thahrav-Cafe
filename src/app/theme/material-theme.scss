@@ -1,0 +1,67 @@
+// ============================================================
+// Thahrav Cafe — Angular Material M3 Custom Theme
+// Primary seed: #4B2E1E (Deep Coffee Brown from Stitch)
+// ============================================================
+@use '@angular/material' as mat;
+
+// Define custom M3 theme
+$thahrav-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$orange-palette,
+    use-system-variables: true,
+  ),
+  typography: (
+    brand-family: 'Noto Serif',
+    plain-family: 'Manrope',
+  ),
+  density: (
+    scale: 0,
+  ),
+));
+
+// Override system color variables to match Stitch parchment palette
+html {
+  @include mat.all-component-themes($thahrav-theme);
+
+  // Override Material's generated CSS color variables with our Stitch tokens
+  --mat-sys-primary: #32190b;
+  --mat-sys-on-primary: #ffffff;
+  --mat-sys-primary-container: #4b2e1e;
+  --mat-sys-on-primary-container: #bf957f;
+  --mat-sys-secondary: #805533;
+  --mat-sys-on-secondary: #ffffff;
+  --mat-sys-secondary-container: #fdc39a;
+  --mat-sys-on-secondary-container: #794e2e;
+  --mat-sys-tertiary: #202020;
+  --mat-sys-on-tertiary: #ffffff;
+  --mat-sys-tertiary-container: #353535;
+  --mat-sys-background: #fff8f3;
+  --mat-sys-on-background: #221a0f;
+  --mat-sys-surface: #fff8f3;
+  --mat-sys-on-surface: #221a0f;
+  --mat-sys-surface-variant: #efe0cd;
+  --mat-sys-on-surface-variant: #50443f;
+  --mat-sys-outline: #82746e;
+  --mat-sys-outline-variant: #d4c3bc;
+  --mat-sys-error: #ba1a1a;
+  --mat-sys-on-error: #ffffff;
+  --mat-sys-error-container: #ffdad6;
+  --mat-sys-surface-container-lowest: #ffffff;
+  --mat-sys-surface-container-low: #fff2e2;
+  --mat-sys-surface-container: #fbecd9;
+  --mat-sys-surface-container-high: #f5e6d3;
+  --mat-sys-surface-container-highest: #efe0cd;
+  --mat-sys-inverse-surface: #372f22;
+  --mat-sys-inverse-on-surface: #feefdb;
+  --mat-sys-inverse-primary: #eabda6;
+  --mat-sys-surface-tint: #795744;
+
+  // Shape overrides — use sharp/sophisticated 2px corners per design spec
+  --mat-sys-corner-extra-small: 2px;
+  --mat-sys-corner-small: 2px;
+  --mat-sys-corner-medium: 4px;
+  --mat-sys-corner-large: 8px;
+  --mat-sys-corner-extra-large: 12px;
+  --mat-sys-corner-full: 9999px;
+}

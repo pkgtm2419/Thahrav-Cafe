@@ -1,0 +1,132 @@
+// ============================================================
+// Thahrav Cafe — Global Styles
+// ============================================================
+@use './app/theme/material-theme' as theme;
+@use './styles/tokens' as *;
+
+// Reset & Base
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+// Material Symbols
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  font-size: 24px;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+// Scrollbar styling
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-surface-container-low); }
+::-webkit-scrollbar-thumb { background: var(--color-outline); border-radius: 3px; }
+
+// No outline focus visible except for keyboard
+:focus:not(:focus-visible) { outline: none; }
+:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+
+// Page layout
+.page-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  
+  @media (max-width: 600px) {
+    padding: 0 var(--space-4);
+  }
+}
+
+.section-padding {
+  padding: var(--space-16) var(--space-6);
+  
+  @media (max-width: 1024px) {
+    padding: var(--space-12) var(--space-4);
+  }
+  
+  @media (max-width: 600px) {
+    padding: var(--space-10) var(--space-4);
+  }
+}
+
+// Parchment noise texture (hero sections)
+.parchment-texture {
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+// Glassmorphism utility (for navbar)
+.glass {
+  background: rgba(255, 248, 243, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+// Animate on scroll — initial state
+.animate-fade-up {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  
+  &.visible {
+    opacity: 1;
+  }
+}
+
+// Stagger delays for child elements
+.stagger-children > *:nth-child(1) { transition-delay: 0ms; }
+.stagger-children > *:nth-child(2) { transition-delay: 80ms; }
+.stagger-children > *:nth-child(3) { transition-delay: 160ms; }
+.stagger-children > *:nth-child(4) { transition-delay: 240ms; }
+.stagger-children > *:nth-child(5) { transition-delay: 320ms; }
+.stagger-children > *:nth-child(6) { transition-delay: 400ms; }
+
+// Global Material Dialog Refinement
+.mat-mdc-dialog-container {
+  overflow: hidden !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: var(--elevation-3) !important;
+}
+
+.product-viewer-panel {
+  max-width: 900px !important;
+  .mdc-dialog__surface {
+    background: var(--color-surface-container-lowest) !important;
+    border-radius: var(--radius-sm) !important;
+    overflow: hidden !important;
+  }
+}
