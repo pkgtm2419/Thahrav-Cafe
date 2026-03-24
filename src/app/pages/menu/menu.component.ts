@@ -63,41 +63,49 @@ import { MatChipsModule } from '@angular/material/chips';
   styles: [`
     .menu-header {
       background: var(--color-surface-container-low);
-      padding: calc(72px + var(--space-12)) var(--space-6) var(--space-12);
+      padding: calc(80px + var(--space-20)) var(--space-8) var(--space-16);
       text-align: center;
 
       .eyebrow {
         color: var(--color-secondary);
         text-transform: uppercase;
-        letter-spacing: 0.15em;
-        font-size: 0.75rem;
-        margin-bottom: var(--space-3);
+        letter-spacing: 0.2em;
+        font-size: 0.8rem;
+        font-weight: 700;
+        margin-bottom: var(--space-4);
       }
 
       .header-title {
         color: var(--color-primary);
-        margin-bottom: var(--space-3);
+        margin-bottom: var(--space-4);
+        font-size: clamp(3rem, 8vw, 5rem);
+        line-height: 1;
       }
 
-      .header-sub { color: var(--color-on-surface-variant); }
+      .header-sub { 
+        color: var(--color-on-surface-variant);
+        font-size: 1.1rem;
+        opacity: 0.8;
+      }
     }
 
     .filter-bar {
       position: sticky;
-      top: 72px;
+      top: 64px;
       z-index: 100;
-      background: rgba(255, 248, 243, 0.9);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(255, 248, 243, 0.95);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--color-outline-variant);
-      padding: var(--space-3) 0;
+      padding: var(--space-4) 0;
+      transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .filter-inner {
       display: flex;
-      gap: var(--space-2);
+      gap: var(--space-3);
       overflow-x: auto;
-      padding-bottom: 2px;
+      padding-bottom: 4px;
       scrollbar-width: none;
       &::-webkit-scrollbar { display: none; }
     }
@@ -105,50 +113,57 @@ import { MatChipsModule } from '@angular/material/chips';
     .filter-chip {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: var(--space-2) var(--space-4);
+      gap: 8px;
+      padding: var(--space-3) var(--space-6);
       border: 1px solid var(--color-outline-variant);
       border-radius: var(--radius-full);
-      background: transparent;
+      background: var(--color-surface);
       color: var(--color-on-surface-variant);
       cursor: pointer;
       white-space: nowrap;
-      transition: all 0.2s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       font-family: var(--font-label);
+      font-weight: 600;
+      box-shadow: var(--shadow-elevation-1);
 
-      .material-symbols-outlined { font-size: 16px; }
+      .material-symbols-outlined { font-size: 18px; }
 
       &:hover {
         background: var(--color-surface-container);
         color: var(--color-primary);
         border-color: var(--color-outline);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-elevation-2);
       }
 
       &.active {
         background: var(--color-primary);
         color: var(--color-on-primary);
         border-color: var(--color-primary);
+        box-shadow: var(--shadow-elevation-3);
       }
     }
 
-    .menu-main { min-height: 60vh; }
+    .menu-main { min-height: 60vh; padding-top: var(--space-12); }
 
     .category-header {
       display: flex;
       align-items: baseline;
       gap: var(--space-4);
-      margin-bottom: var(--space-8);
+      margin-bottom: var(--space-10);
+      border-left: 4px solid var(--color-secondary);
+      padding-left: var(--space-6);
 
-      .cat-count { color: var(--color-on-surface-variant); }
+      .cat-count { color: var(--color-on-surface-variant); font-weight: 500; }
     }
 
     .menu-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: var(--space-5);
+      gap: var(--space-8);
 
       @media (max-width: 1024px) { grid-template-columns: repeat(2, 1fr); }
-      @media (max-width: 540px)  { grid-template-columns: 1fr; }
+      @media (max-width: 600px)  { grid-template-columns: 1fr; gap: var(--space-6); }
     }
 
     .no-items {

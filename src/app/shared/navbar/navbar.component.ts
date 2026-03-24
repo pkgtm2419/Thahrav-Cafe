@@ -90,13 +90,19 @@ interface NavLink {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 1000;
-      transition: background 0.4s ease, box-shadow 0.4s ease;
+      transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                  box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
       &.scrolled {
-        background: rgba(255, 248, 243, 0.85);
+        background: rgba(255, 248, 243, 0.95);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        box-shadow: 0 1px 0 rgba(130, 116, 110, 0.15);
+        box-shadow: var(--shadow-elevation-2);
+        
+        .navbar-inner {
+          height: 64px;
+        }
       }
     }
 
@@ -104,7 +110,8 @@ interface NavLink {
       display: flex;
       align-items: center;
       gap: var(--space-6);
-      height: 72px;
+      height: 80px;
+      transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .navbar-logo {
@@ -115,8 +122,13 @@ interface NavLink {
       color: var(--color-primary);
 
       .logo-hindi {
-        font-size: 1.625rem;
+        font-size: 1.75rem;
         letter-spacing: -0.01em;
+        transition: font-size 0.4s ease;
+      }
+      
+      .scrolled & .logo-hindi {
+        font-size: 1.5rem;
       }
 
       .logo-divider {
@@ -143,11 +155,11 @@ interface NavLink {
     }
 
     .nav-link {
-      padding: var(--space-2) var(--space-3);
+      padding: var(--space-2) var(--space-4);
       text-decoration: none;
       color: var(--color-on-surface-variant);
-      border-radius: var(--radius-sm);
-      transition: color 0.2s ease, background 0.2s ease;
+      border-radius: var(--radius-full);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
       &:hover {
         color: var(--color-primary);
@@ -156,6 +168,7 @@ interface NavLink {
 
       &.active {
         color: var(--color-primary);
+        background: var(--color-primary-fixed);
         font-weight: 600;
       }
     }
@@ -166,16 +179,26 @@ interface NavLink {
       gap: var(--space-2);
       background: var(--color-primary) !important;
       color: var(--color-on-primary) !important;
-      border-radius: var(--radius-sm) !important;
-      padding: 0 var(--space-4) !important;
-      height: 40px;
+      border-radius: var(--radius-full) !important;
+      padding: 0 var(--space-6) !important;
+      height: 48px;
       font-family: var(--font-label);
       font-size: 0.875rem;
-      font-weight: 500;
+      font-weight: 600;
       text-decoration: none;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.05em;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 
-      .material-symbols-outlined { font-size: 18px; }
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: var(--shadow-elevation-3);
+      }
+      
+      &:active {
+        transform: scale(0.95);
+      }
+
+      .material-symbols-outlined { font-size: 20px; }
 
       @media (max-width: 768px) { display: none; }
     }
