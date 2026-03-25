@@ -88,24 +88,37 @@ interface NavLink {
 
     .navbar {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 12px; 
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 40px);
+      max-width: var(--page-max-width);
       z-index: 1000;
       padding-top: 5px;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      padding-bottom: 5px;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       
-      // Default glass state for visibility over slider
-      background: rgba(255, 248, 243, 0.15);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      // Default floating state
+      background: rgba(255, 248, 243, 0.25);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: var(--shadow-elevation-2);
 
       @media (max-width: 768px) {
+        top: 8px;
+        width: calc(100% - 24px);
         padding-top: 0;
       }
 
       &.scrolled {
+        top: 0;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 0;
+        border-bottom: 1px solid var(--color-outline-variant);
         background: rgba(255, 248, 243, 0.9);
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
         box-shadow: var(--shadow-elevation-2);
         
         .navbar-inner {
@@ -118,7 +131,8 @@ interface NavLink {
       display: flex;
       align-items: center;
       gap: var(--space-6);
-      height: 80px;
+      height: 72px;
+      padding: 0 var(--space-6);
       transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -128,7 +142,7 @@ interface NavLink {
       gap: var(--space-2);
       text-decoration: none;
       color: var(--color-primary);
-      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      text-shadow: 0 1px 2px rgba(255,255,255,0.5);
 
       .logo-hindi {
         font-size: 1.85rem;
