@@ -90,14 +90,22 @@ interface NavLink {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 1000;
-      transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
-                  box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                  transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      padding-top: 5px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      
+      // Default glass state for visibility over slider
+      background: rgba(255, 248, 243, 0.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+
+      @media (max-width: 768px) {
+        padding-top: 0;
+      }
 
       &.scrolled {
-        background: rgba(255, 248, 243, 0.95);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+        background: rgba(255, 248, 243, 0.9);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
         box-shadow: var(--shadow-elevation-2);
         
         .navbar-inner {
@@ -120,36 +128,47 @@ interface NavLink {
       gap: var(--space-2);
       text-decoration: none;
       color: var(--color-primary);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 
       .logo-hindi {
-        font-size: 1.75rem;
+        font-size: 1.85rem;
         letter-spacing: -0.01em;
-        transition: font-size 0.4s ease;
+        font-weight: 800;
+        transition: all 0.4s ease;
       }
       
       .scrolled & .logo-hindi {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
       }
 
       .logo-divider {
-        width: 1px;
-        height: 20px;
-        background: var(--color-outline-variant);
+        width: 1.5px;
+        height: 24px;
+        background: var(--color-primary);
+        opacity: 0.3;
       }
 
       .logo-sub {
-        color: var(--color-on-surface-variant);
+        color: var(--color-primary);
         text-transform: uppercase;
-        letter-spacing: 0.12em;
-        font-size: 0.7rem;
+        letter-spacing: 0.15em;
+        font-size: 0.75rem;
+        font-weight: 700;
+        opacity: 0.8;
       }
     }
 
     .navbar-links {
       display: flex;
       align-items: center;
-      gap: var(--space-2);
+      gap: var(--space-4);
       margin-left: auto;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 6px var(--space-6);
+      border-radius: var(--radius-full);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: var(--shadow-elevation-1);
 
       @media (max-width: 768px) { display: none; }
     }
@@ -157,19 +176,22 @@ interface NavLink {
     .nav-link {
       padding: var(--space-2) var(--space-4);
       text-decoration: none;
-      color: var(--color-on-surface-variant);
+      color: #32190b; // High contrast brown
+      font-weight: 800;
       border-radius: var(--radius-full);
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 0.95rem;
 
       &:hover {
         color: var(--color-primary);
-        background: var(--color-surface-container-low);
+        background: rgba(255, 255, 255, 0.4);
+        transform: translateY(-1px);
       }
 
       &.active {
-        color: var(--color-primary);
-        background: var(--color-primary-fixed);
-        font-weight: 600;
+        color: var(--color-on-primary);
+        background: var(--color-primary);
+        box-shadow: var(--shadow-elevation-2);
       }
     }
 
